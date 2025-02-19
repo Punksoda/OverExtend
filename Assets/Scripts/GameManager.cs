@@ -41,7 +41,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
+        Debug.Log("Game Start");
+        uiManager.GameStart();
     }
 
     public void GameOver()

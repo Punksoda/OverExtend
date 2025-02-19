@@ -31,7 +31,15 @@ public class UIManager : MonoBehaviour
 
         restartText.gameObject.SetActive(false);
     }
-
+    public void GameStart()
+    {
+        gameStartText.gameObject.SetActive(true);
+        if (Input.GetKey(KeyCode.A))
+        {
+            gameStartText.gameObject.SetActive(false);
+        }
+       
+    }
     public void SetRestart()
     {
         restartText.gameObject.SetActive(true);
