@@ -6,8 +6,8 @@ public class Player : MonoBehaviour
     Rigidbody2D _rigidbody = null;
     GameManager gameManager = null;
 
-    public float flapForce = 6f;
-    public float forwardSpeed = 3f;
+    public float flapForce = 6f; // 짬푸능력
+    public float forwardSpeed = 3f; // 앞으로 간다잇
     public bool isDead = false;
     float deathCooldown = 0f;
 
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
         animator = transform.GetComponentInChildren<Animator>();
         _rigidbody = transform.GetComponent<Rigidbody2D>();
 
-        if (animator == null)
+        if (animator == null) //널 체크
         {
             Debug.LogError("Not Founded Animator");
         }
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (godMode)
+        if (godMode) // 체크용 무적모드
             return;
 
         animator.SetInteger("IsDie", 1);

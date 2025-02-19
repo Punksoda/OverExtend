@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -33,10 +34,20 @@ public class PlayerControl : MonoBehaviour
     void Update() // 유니티 내에 있는 InputManager의 "Horizontal"과 "vertical"키 값 사용
     {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        movementDirection = moveInput.normalized;//방향을 정규화시켜준다
-        if (anim != null)
+        movementDirection = moveInput.normalized;// 방향을 정규화시켜준다
+        if (anim != null) //움직여!
         {
             Movement(movementDirection);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 충돌한 오브젝트 태그가 "NPC"일 경우 
+        if (other.CompareTag("NPC"))
+        {
+            // 미니게임 씬으로 변경
+            SceneManager.LoadScene("MiniGame");
         }
     }
 

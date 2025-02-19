@@ -16,20 +16,18 @@ public class GameManager : MonoBehaviour
     private int currentScore = 0;
     UIManager uiManager;
 
-    public static UIManager UIManager
+    public UIManager UIManager
     {
-        get { return UIManager; }
+        get { return uiManager; }
+        set { uiManager = value; }
     }
 
 
     private void Awake()
     {
-        uiManager = FindAnyObjectByType<UIManager>();
-
         if (gameManager == null)
         {
             gameManager = this;
-            
         }
         else
         {
@@ -38,19 +36,19 @@ public class GameManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        DontDestroyOnLoad(gameObject);
-        
+        DontDestroyOnLoad(gameObject); // 다른 씬에서도 gameObject를 가져올 수 있게 해준다
     }
 
     private void Start()
     {
-        uiManager.UpdateScore(0);
+        
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over");
         uiManager.SetRestart();
+        SceneManager.LoadScene("MainScene");
     }
 
     public void RestartGame()
