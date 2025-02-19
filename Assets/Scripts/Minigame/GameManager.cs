@@ -14,12 +14,22 @@ public class GameManager : MonoBehaviour
     }
 
     private int currentScore = 0;
+    UIManager uiManager;
+
+    public static UIManager UIManager
+    {
+        get { return UIManager; }
+    }
+
 
     private void Awake()
     {
-        if(gameManager == null)
+        uiManager = FindAnyObjectByType<UIManager>();
+
+        if (gameManager == null)
         {
             gameManager = this;
+            
         }
         else
         {
@@ -32,9 +42,15 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        uiManager.UpdateScore(0);
+    }
+
     public void GameOver()
     {
         Debug.Log("Game Over");
+        uiManager.SetRestart();
     }
 
     public void RestartGame()
@@ -45,7 +61,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int score)
     {
         currentScore += score;
-
+        uiManager.UpdateScore(currentScore);
         Debug.Log("Score: " + currentScore);
     }
 
