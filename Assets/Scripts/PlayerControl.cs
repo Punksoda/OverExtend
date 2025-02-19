@@ -9,7 +9,10 @@ public class PlayerControl : MonoBehaviour
     protected Rigidbody2D rigid; // 리지드바디 이름 선언
     protected AnimationHandler anim; // 애니메이터 핸들러 선언
     protected Vector2 movementDirection = Vector2.zero; // 방향값 선언 및 초기화
-    public Vector2 MovementDirection { get { return movementDirection; } }  
+    public Vector2 MovementDirection { get { return movementDirection; } }
+    public Vector2 lookDir = Vector2.right; // 초기 방향을 오른쪽으로 설정
+
+
 
     void Start()
     {
@@ -28,6 +31,11 @@ public class PlayerControl : MonoBehaviour
 
         rigid.velocity = direction;
         anim.Move(movementDirection);
+        if (direction != Vector2.zero)
+        {
+            lookDir = direction;
+            UpdateSpriteDirection(); // 스프라이트 방향 변경
+        }
     }
 
     // Update is called once per frame
@@ -48,6 +56,18 @@ public class PlayerControl : MonoBehaviour
         {
             // 미니게임 씬으로 변경
             SceneManager.LoadScene("MiniGame");
+        }
+    }
+
+    private void UpdateSpriteDirection()
+    {
+        if (lookDir.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1); // 오른쪽 방향
+        }
+        else if (lookDir.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1); // 왼쪽 방향 (좌우 반전)
         }
     }
 
