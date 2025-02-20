@@ -5,9 +5,11 @@ public class Player : MonoBehaviour
     Animator animator = null;
     Rigidbody2D _rigidbody = null;
     GameManager gameManager = null;
+    AudioSource audioSource = null;
 
     public float flapForce = 6f; // 짬푸능력
     public float forwardSpeed = 3f; // 앞으로 간다잇
+    public AudioClip jumpSound; //  점프사운드 추가
     public bool isDead = false;
     float deathCooldown = 0f;
 
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
         gameManager = GameManager.Instance;
         animator = transform.GetComponentInChildren<Animator>();
         _rigidbody = transform.GetComponent<Rigidbody2D>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         if (animator == null) //널 체크
         {
@@ -53,6 +56,11 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 isFlap = true;
+                if(jumpSound != null) //점프시 점프 사운드 출력
+                {
+                    audioSource.Stop(); // 끊었다가 가준다
+                    audioSource.PlayOneShot(jumpSound);
+                }
             }
         }
     }

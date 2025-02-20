@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private int currentScore = 0;
     UIManager uiManager;
-
+   
     public UIManager UIManager
     {
         get { return uiManager; }
@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("Game Start");
-        uiManager.GameStart();
     }
 
     public void GameOver()
