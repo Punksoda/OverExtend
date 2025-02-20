@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BackGround
   - NPC
+  - BOMB
   layers:
   - Default
   - TransparentFX
