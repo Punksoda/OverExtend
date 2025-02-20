@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartGame
       objectReference: {fileID: 0}
+    - target: {fileID: 6653049986131298460, guid: 4ff74966208b8684cbd343143419a8f7, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7167706839479684042, guid: 4ff74966208b8684cbd343143419a8f7, type: 3}
       propertyPath: m_UiScaleMode
       value: 0

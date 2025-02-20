@@ -57,6 +57,15 @@ public class PlayerControl : MonoBehaviour
             // 미니게임 씬으로 변경
             SceneManager.LoadScene("MiniGame");
         }
+
+        if(other.CompareTag("BOMB")) // 충돌한 오브젝트 태그가 "BOMB"일 경우
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false; // 에디터에서도 종료할수 있게 변경
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
+        }
     }
 
     private void UpdateSpriteDirection()
