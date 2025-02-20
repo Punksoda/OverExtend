@@ -5,23 +5,21 @@ public class Player : MonoBehaviour
     Animator animator = null;
     Rigidbody2D _rigidbody = null;
     GameManager gameManager = null;
-    AudioSource audioSource = null; 
 
     public float flapForce = 6f; // 짬푸능력
     public float forwardSpeed = 3f; // 앞으로 간다잇
-    public AudioClip jumpSound; // 짬푸 소리를 넣어줍니다
     public bool isDead = false;
     float deathCooldown = 0f;
-    bool isFlap = false;
-    public bool godMode = false;
 
+    bool isFlap = false;
+
+    public bool godMode = false;
 
     void Start()
     {
         gameManager = GameManager.Instance;
         animator = transform.GetComponentInChildren<Animator>();
         _rigidbody = transform.GetComponent<Rigidbody2D>();
-        audioSource = gameObject.AddComponent<AudioSource>();
 
         if (animator == null) //널 체크
         {
@@ -32,8 +30,6 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Not Founded Rigidbody");
         }
-
-       
     }
 
     void Update()
@@ -57,16 +53,8 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 isFlap = true;
-                // 점프 소리 재생
-                if (jumpSound != null)
-                {
-                    audioSource.Stop(); // 소리 멈춰
-                    audioSource.PlayOneShot(jumpSound); // 누를떄마다 소리재생
-                }
-
             }
         }
-       
     }
 
     public void FixedUpdate()
